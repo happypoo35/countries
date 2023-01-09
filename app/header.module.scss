@@ -1,0 +1,11 @@
+.header {
+  background: color(bg, primary);
+  box-shadow: 0 0.125rem 0.25rem rgba(black, 0.06);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

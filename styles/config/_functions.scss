@@ -1,0 +1,27 @@
+@use "sass:math";
+
+@function color($keys...) {
+  $value: $colors;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}
+
+@function useClamp($minWidthPx, $maxWidthPx, $minSizeRem, $maxSizeRem) {
+  $minWidth: math.div($minWidthPx, 16);
+  $maxWidth: math.div($maxWidthPx, 16);
+
+  $slope: math.div($maxSizeRem - $minSizeRem, $maxWidth - $minWidth);
+  $yAxisIntersection: -$minWidth * $slope + $minSizeRem;
+
+  $result: (
+    $minSizeRem * 1rem,
+    $yAxisIntersection * 1rem #{"+"} $slope * 100 * 1vw,
+    $maxSizeRem * 1rem
+  );
+
+  @return clamp(#{$result});
+}

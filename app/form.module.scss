@@ -1,0 +1,44 @@
+.search {
+  margin-bottom: 3rem;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  position: relative;
+  width: min(30rem, 100%);
+
+  @include tablet {
+    width: 100%;
+  }
+
+  svg {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: color(gray, 300);
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    background: color(bg, primary);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
+    width: 100%;
+    padding: 1.125rem 1rem 1rem 4.5rem;
+
+    &::placeholder {
+      color: color(gray, 300);
+    }
+  }
+}

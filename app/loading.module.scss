@@ -1,0 +1,12 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+
+  svg {
+    font-size: 8rem;
+    opacity: 0.1;
+  }
+}
