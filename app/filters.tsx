@@ -1,25 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FaSearch } from "react-icons/fa";
 
-import { useAppDispatch, useAppSelector, useDebounce } from "@hooks";
-import { selectQuery, setQueryPage, setQuerySearch } from "rtk/query.slice";
+import { useAppDispatch, useDebounce } from "@hooks";
+import { setQueryLoading, setQueryPage } from "rtk/query.slice";
 // import { useGlobalContext } from "../context";
-// import Select from "./Select";
+import Select from "./select";
 
 import s from "./form.module.scss";
 
-const Filters = () => {
+const Filters = ({ searchQuery = "" }: { searchQuery?: string }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchQuery);
 
   const dispatch = useAppDispatch();
   const searchValue = useRef(null);
-  const query = useAppSelector(selectQuery);
 
   const debounced = useDebounce(search, 200);
 
@@ -28,22 +25,21 @@ const Filters = () => {
     if (search && debounced) {
       params.append("s", debounced);
       router.replace(`?${params}`);
-      dispatch(setQueryPage(""));
-      // dispatch(setQuerySearch(debounced));
+      dispatch(setQueryPage(1));
     } else if (!search && debounced) {
       params.delete("s");
       router.replace("");
-      dispatch(setQueryPage(""));
-      // dispatch(setQuerySearch(""));
+      dispatch(setQueryPage(1));
     }
   }, [debounced, search, dispatch, router]);
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(query);
-  //   console.log(query);
-
-  //   // params.toString() ? router.replace(`?${params}`) : router.replace("");
-  // }, [query, router]);
+  useEffect(() => {
+    if (searchQuery !== search) {
+      dispatch(setQueryLoading(true));
+    } else {
+      dispatch(setQueryLoading(false));
+    }
+  }, [searchQuery, dispatch, search]);
 
   return (
     <section className={s.search} aria-label="search section">
@@ -57,11 +53,10 @@ const Filters = () => {
             aria-label="search field"
             ref={searchValue}
             value={search}
-            // onChange={searchCountry}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        {/* <Select /> */}
+        <Select />
       </form>
     </section>
   );

@@ -10,6 +10,10 @@
   @return $value;
 }
 
+@function getHsl($hsl) {
+  @return hue($hsl), saturation($hsl), lightness($hsl);
+}
+
 @function useClamp($minWidthPx, $maxWidthPx, $minSizeRem, $maxSizeRem) {
   $minWidth: math.div($minWidthPx, 16);
   $maxWidth: math.div($maxWidthPx, 16);

@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@hooks";
 import { setQueryPage } from "rtk/query.slice";
 
+import s from "./pageLoader.module.scss";
+
 const PageLoader = ({ nHits }: { nHits: number }) => {
   const ref = useRef(null);
   const [page, setPage] = useState(1);
@@ -21,7 +23,7 @@ const PageLoader = ({ nHits }: { nHits: number }) => {
           setPage((p) => p + 1);
         }
       },
-      { threshold: 1, rootMargin: "400px" }
+      { threshold: 1, rootMargin: "200px" }
     );
 
     observer.observe(stableRef);
@@ -30,13 +32,17 @@ const PageLoader = ({ nHits }: { nHits: number }) => {
 
   useEffect(() => {
     if (page !== 1) {
-      dispatch(setQueryPage(String(page)));
+      dispatch(setQueryPage(page));
     }
   }, [page, dispatch]);
 
   return (
-    <div style={{ paddingBlock: "2rem" }}>
-      <h1 ref={ref}>Loading countries...</h1>
+    <div
+      className={s.loader}
+      data-visible={page * 12 < nHits || undefined}
+      ref={ref}
+    >
+      Loading countries...
     </div>
   );
 };

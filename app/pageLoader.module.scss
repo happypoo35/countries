@@ -1,0 +1,13 @@
+.loader {
+  padding-block: 4rem;
+  font-size: 1.25rem;
+  color: color(gray, 200);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  display: none;
+
+  &[data-visible] {
+    display: flex;
+  }
+}

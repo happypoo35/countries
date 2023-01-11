@@ -1,4 +1,4 @@
-import sSection from "./countries.module.scss";
+import sSection from "./countriesList.module.scss";
 import sCard from "./country.module.scss";
 
 const CountriesSkeleton = () => {

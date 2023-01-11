@@ -10,6 +10,7 @@
 
   --primary: white;
   --body: hsl(0, 0%, 98%);
+  --select: 200, 15%, 8%;
 }
 
 [data-theme="dark"] {
@@ -22,6 +23,7 @@
 
   --primary: hsl(209, 23%, 22%);
   --body: hsl(207, 26%, 17%);
+  --select: 0, 0%, 100%;
 }
 
 [data-container] {

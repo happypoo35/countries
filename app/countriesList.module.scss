@@ -4,6 +4,11 @@
   // gap: clamp(2.5rem, 5vw, 4.625rem);
   gap: 4rem;
   place-items: center;
+  transition: 0.2s;
+
+  &[data-loading] {
+    opacity: 0.5;
+  }
 
   // article {
   //   width: min(16.5rem, 100%);

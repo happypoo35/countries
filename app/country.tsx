@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CountryObj } from "./countries";
 
@@ -6,8 +5,12 @@ import s from "./country.module.scss";
 
 const Country = ({ data }: { data: CountryObj }) => {
   return (
-    // <Link href={`/country/${data.name}`} aria-label={data.name}>
-    <article className={s.country} aria-label={data.name}>
+    <Link
+      className={s.country}
+      href={`/${data.name}`}
+      aria-label={data.name}
+      role="article"
+    >
       <picture className={s.img}>
         <img src={data.flag} alt={data.name} />
       </picture>
@@ -16,7 +19,7 @@ const Country = ({ data }: { data: CountryObj }) => {
         <ul>
           <li>
             <p>
-              Population: <span>{data.population.toLocaleString()}</span>
+              Population: <span>{data.population}</span>
             </p>
           </li>
           <li>
@@ -31,8 +34,7 @@ const Country = ({ data }: { data: CountryObj }) => {
           </li>
         </ul>
       </div>
-    </article>
-    // </Link>
+    </Link>
   );
 };
 

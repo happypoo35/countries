@@ -28,7 +28,7 @@ const ToggleTheme = () => {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       {resolvedTheme === "dark" ? <FaSun /> : <FaRegMoon />}
-      {resolvedTheme} Mode
+      {resolvedTheme === "dark" ? "light" : "dark"} Mode
     </button>
   );
 };
