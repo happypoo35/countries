@@ -15,10 +15,6 @@
     color: transparent;
   }
 
-  @include mobile {
-    font-size: 0.75rem;
-  }
-
   @include hover {
     svg {
       animation: 0.5s alternate rotate ease-in-out infinite;

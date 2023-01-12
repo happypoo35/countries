@@ -7,7 +7,7 @@ const Country = ({ data }: { data: CountryObj }) => {
   return (
     <Link
       className={s.country}
-      href={`/${data.name}`}
+      href={`/${data.alpha3Code.toLowerCase()}`}
       aria-label={data.name}
       role="article"
     >
@@ -18,19 +18,13 @@ const Country = ({ data }: { data: CountryObj }) => {
         <h4>{data.name}</h4>
         <ul>
           <li>
-            <p>
-              Population: <span>{data.population}</span>
-            </p>
+            Population: <span>{data.population}</span>
           </li>
           <li>
-            <p>
-              Region: <span>{data.region}</span>
-            </p>
+            Region: <span>{data.region}</span>
           </li>
           <li>
-            <p>
-              Capital: <span>{data.capital}</span>
-            </p>
+            Capital: <span>{data.capital}</span>
           </li>
         </ul>
       </div>

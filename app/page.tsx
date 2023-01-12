@@ -3,15 +3,13 @@ import Countries from "./countries";
 import CountriesSkeleton from "./countriesSkeleton";
 import Filters from "./filters";
 
-import s from "./page.module.scss";
-
 export default function Home({
   searchParams,
 }: {
   searchParams: { s?: string };
 }) {
   return (
-    <main className={s.main} data-container="fixed">
+    <>
       <Suspense>
         <Filters searchQuery={searchParams.s} />
       </Suspense>
@@ -19,6 +17,6 @@ export default function Home({
         {/* @ts-expect-error Server Component */}
         <Countries search={searchParams.s} />
       </Suspense>
-    </main>
+    </>
   );
 }

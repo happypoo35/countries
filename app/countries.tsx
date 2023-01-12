@@ -6,13 +6,15 @@ export interface CountryObj {
   region: string;
   population: number | string;
   flag: string;
+  alpha3Code: string;
 }
 
 export const getCountries = async (search?: string): Promise<CountryObj[]> => {
   const res = await fetch(
     `https://restcountries.com/v2/${
       search ? `name/${search}/` : "all/"
-    }?fields=name,capital,region,population,flag`
+    }?fields=name,capital,region,population,flag,alpha3Code`,
+    { cache: "no-store" }
   );
 
   if (!res.ok) return [];

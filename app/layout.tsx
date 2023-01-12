@@ -24,7 +24,9 @@ export default function RootLayout({
         <Providers>
           <div className={s.wrapper}>
             <Header />
-            {children}
+            <main className={s.main} data-container="fixed">
+              {children}
+            </main>
           </div>
         </Providers>
       </body>

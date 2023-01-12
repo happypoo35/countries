@@ -1,17 +1,22 @@
-.search {
+.section {
   margin-bottom: 3rem;
-}
-
-.form {
   display: flex;
   justify-content: space-between;
-  gap: 2.5rem;
-  flex-wrap: wrap;
+  gap: 2rem;
+
+  @include tablet {
+    gap: 1.5rem;
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .input {
   position: relative;
   width: min(30rem, 100%);
+  box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
 
   @include tablet {
     width: 100%;
@@ -21,7 +26,6 @@
     border: none;
     background: color(bg, primary);
     border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
     width: 100%;
     padding: 1.125rem 1rem 1rem 3.5rem;
 

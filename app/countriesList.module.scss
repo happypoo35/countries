@@ -1,16 +1,11 @@
 .countries {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
-  // gap: clamp(2.5rem, 5vw, 4.625rem);
-  gap: 4rem;
+  gap: useClamp(564, 1180, 2, 4);
   place-items: center;
-  transition: 0.2s;
+  transition: opacity 0.2s;
 
   &[data-loading] {
     opacity: 0.5;
   }
-
-  // article {
-  //   width: min(16.5rem, 100%);
-  // }
 }

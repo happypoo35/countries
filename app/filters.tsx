@@ -9,7 +9,7 @@ import { setQueryLoading, setQueryPage } from "rtk/query.slice";
 // import { useGlobalContext } from "../context";
 import Select from "./select";
 
-import s from "./form.module.scss";
+import s from "./filters.module.scss";
 
 const Filters = ({ searchQuery = "" }: { searchQuery?: string }) => {
   const router = useRouter();
@@ -42,22 +42,20 @@ const Filters = ({ searchQuery = "" }: { searchQuery?: string }) => {
   }, [searchQuery, dispatch, search]);
 
   return (
-    <section className={s.search} aria-label="search section">
-      <form className={s.form} onSubmit={(e) => e.preventDefault()}>
-        <div className={s.input}>
-          <FaSearch />
-          <input
-            type="text"
-            autoComplete="off"
-            placeholder="Search for a country..."
-            aria-label="search field"
-            ref={searchValue}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-        <Select />
-      </form>
+    <section className={s.section} aria-label="search section">
+      <div className={s.input}>
+        <FaSearch />
+        <input
+          type="text"
+          autoComplete="off"
+          placeholder="Search for a country..."
+          aria-label="search field"
+          ref={searchValue}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+      <Select />
     </section>
   );
 };
