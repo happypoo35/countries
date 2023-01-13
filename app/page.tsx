@@ -10,10 +10,8 @@ export default function Home({
 }) {
   return (
     <>
-      <Suspense>
-        <Filters searchQuery={searchParams.s} />
-      </Suspense>
-      <Suspense /* key={searchParams.s} */ fallback={<CountriesSkeleton />}>
+      <Filters searchQuery={searchParams.s} />
+      <Suspense fallback={<CountriesSkeleton />}>
         {/* @ts-expect-error Server Component */}
         <Countries search={searchParams.s} />
       </Suspense>

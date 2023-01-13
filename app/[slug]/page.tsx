@@ -64,7 +64,7 @@ const Country = async ({ params }: { params: { slug: string } }) => {
   } = await getCountry(slug);
 
   return (
-    <section aria-label={`${name} details`}>
+    <section className={s.section} aria-label={`${name} details`}>
       <Link href="/" aria-label="previous page" className={s.btn}>
         <BsArrowLeft />
         Back

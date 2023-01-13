@@ -1,15 +1,19 @@
-import { useAppDispatch } from "@hooks";
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { setQueryRegion } from "rtk/query.slice";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { selectRegion, setQueryRegion } from "rtk/query.slice";
 
 import s from "./select.module.scss";
 
 const optionsList = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 const Select = () => {
+  const selected = useAppSelector(selectRegion);
+
   const [showList, setShowList] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(
+    optionsList.indexOf(selected)
+  );
   const selectRef = useRef<null | HTMLDivElement>(null);
   const namespace = "region";
 
