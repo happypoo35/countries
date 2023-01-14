@@ -16,7 +16,6 @@
 .input {
   position: relative;
   width: min(30rem, 100%);
-  box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
 
   @include tablet {
     width: 100%;
@@ -25,6 +24,7 @@
   input {
     border: none;
     background: color(bg, primary);
+    box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
     border-radius: 0.25rem;
     width: 100%;
     padding: 1.125rem 1rem 1rem 3.5rem;

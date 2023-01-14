@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    scrollRestoration: true,
   },
   images: {
     domains: ["assets.vercel.com", "upload.wikimedia.org", "flagcdn.com"],

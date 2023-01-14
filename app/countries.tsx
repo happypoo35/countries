@@ -9,12 +9,9 @@ export interface CountryObj {
   alpha3Code: string;
 }
 
-export const getCountries = async (search?: string): Promise<CountryObj[]> => {
+export const getCountries = async (): Promise<CountryObj[]> => {
   const res = await fetch(
-    `https://restcountries.com/v2/${
-      search ? `name/${search}/` : "all/"
-    }?fields=name,capital,region,population,flag,alpha3Code`,
-    { cache: "no-store" }
+    `https://restcountries.com/v2/all?fields=name,capital,region,population,flag,alpha3Code`
   );
 
   if (!res.ok) return [];
@@ -27,8 +24,8 @@ export const getCountries = async (search?: string): Promise<CountryObj[]> => {
   return data;
 };
 
-const Countries = async ({ search }: { search?: string }) => {
-  const countries = await getCountries(search);
+const Countries = async () => {
+  const countries = await getCountries();
 
   return <CountriesList countries={countries} />;
 };

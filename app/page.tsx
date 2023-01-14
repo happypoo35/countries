@@ -10,7 +10,7 @@ export default function Home({
 }) {
   return (
     <>
-      <Filters searchQuery={searchParams.s} />
+      <Filters />
       <Suspense fallback={<CountriesSkeleton />}>
         {/* @ts-expect-error Server Component */}
         <Countries search={searchParams.s} />

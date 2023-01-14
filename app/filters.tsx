@@ -1,19 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { FaSearch } from "react-icons/fa";
-
-import { useAppDispatch, useDebounce } from "@hooks";
-import { setQueryLoading, setQueryPage } from "rtk/query.slice";
-// import { useGlobalContext } from "../context";
 import Select from "./select";
+
+import { useAppDispatch, useAppSelector, useDebounce } from "@hooks";
+import {
+  selectQuerySearch,
+  setQueryLoading,
+  setQueryPage,
+  setQuerySearch,
+} from "rtk/query.slice";
 
 import s from "./filters.module.scss";
 
-const Filters = ({ searchQuery = "" }: { searchQuery?: string }) => {
-  const router = useRouter();
-  const [search, setSearch] = useState(searchQuery);
+const Filters = () => {
+  const querySearch = useAppSelector(selectQuerySearch);
+  const [search, setSearch] = useState(querySearch);
 
   const dispatch = useAppDispatch();
   const searchValue = useRef(null);
@@ -21,25 +24,15 @@ const Filters = ({ searchQuery = "" }: { searchQuery?: string }) => {
   const debounced = useDebounce(search, 200);
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (search && debounced) {
-      params.append("s", debounced);
-      router.replace(`?${params}`);
-      dispatch(setQueryPage(1));
-    } else if (!search && debounced) {
-      params.delete("s");
-      router.replace("");
-      dispatch(setQueryPage(1));
-    }
-  }, [debounced, search, dispatch, router]);
+    dispatch(setQueryLoading(search !== debounced));
+  }, [search, debounced, dispatch]);
 
   useEffect(() => {
-    if (searchQuery !== search) {
-      dispatch(setQueryLoading(true));
-    } else {
-      dispatch(setQueryLoading(false));
+    if (debounced !== querySearch) {
+      dispatch(setQuerySearch(debounced));
+      dispatch(setQueryPage(1));
     }
-  }, [searchQuery, dispatch, search]);
+  }, [dispatch, debounced, querySearch]);
 
   return (
     <section className={s.section} aria-label="search section">

@@ -9,3 +9,15 @@
     opacity: 0.5;
   }
 }
+
+.empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+
+  h2 {
+    color: color(gray, 300);
+    font-weight: 600;
+    text-align: center;
+  }
+}

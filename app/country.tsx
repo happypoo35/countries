@@ -15,7 +15,7 @@ const Country = ({ data }: { data: CountryObj }) => {
         <img src={data.flag} alt={data.name} />
       </picture>
       <div className={s.body}>
-        <h4>{data.name}</h4>
+        <h2>{data.name}</h2>
         <ul>
           <li>
             Population: <span>{data.population}</span>
@@ -23,9 +23,11 @@ const Country = ({ data }: { data: CountryObj }) => {
           <li>
             Region: <span>{data.region}</span>
           </li>
-          <li>
-            Capital: <span>{data.capital}</span>
-          </li>
+          {data.capital && (
+            <li>
+              Capital: <span>{data.capital}</span>
+            </li>
+          )}
         </ul>
       </div>
     </Link>

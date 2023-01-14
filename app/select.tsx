@@ -111,6 +111,7 @@ const Select = () => {
         id={`${namespace}_dropdown`}
         tabIndex={-1}
         aria-multiselectable={false}
+        aria-label="List of regions"
       >
         {optionsList.map((option, id) => {
           return (

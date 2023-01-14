@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { useAppDispatch } from "@hooks";
-import { setQueryPage } from "rtk/query.slice";
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { selectPage, setQueryPage } from "rtk/query.slice";
 
 import s from "./pageLoader.module.scss";
 
 const PageLoader = ({ nHits }: { nHits: number }) => {
   const ref = useRef(null);
-  const [page, setPage] = useState(1);
+  const currentPage = useAppSelector(selectPage);
 
   const dispatch = useAppDispatch();
 
@@ -20,7 +20,7 @@ const PageLoader = ({ nHits }: { nHits: number }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setPage((p) => p + 1);
+          dispatch(setQueryPage(currentPage + 1));
         }
       },
       { threshold: 1, rootMargin: "200px" }
@@ -28,18 +28,12 @@ const PageLoader = ({ nHits }: { nHits: number }) => {
 
     observer.observe(stableRef);
     return () => observer.unobserve(stableRef);
-  }, []);
-
-  useEffect(() => {
-    if (page !== 1) {
-      dispatch(setQueryPage(page));
-    }
-  }, [page, dispatch]);
+  }, [dispatch, currentPage]);
 
   return (
     <div
       className={s.loader}
-      data-visible={page * 12 < nHits || undefined}
+      data-visible={currentPage * 12 < nHits || undefined}
       ref={ref}
     >
       Loading countries...
