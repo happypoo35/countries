@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks";
 import { selectPage, setQueryPage } from "rtk/query.slice";
 
-import s from "./pageLoader.module.scss";
+import s from "./infinityLoader.module.scss";
 
 const InfinityLoader = ({ nHits }: { nHits: number }) => {
   const ref = useRef(null);
