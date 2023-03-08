@@ -7,7 +7,7 @@ import { selectPage, setQueryPage } from "rtk/query.slice";
 
 import s from "./pageLoader.module.scss";
 
-const PageLoader = ({ nHits }: { nHits: number }) => {
+const InfinityLoader = ({ nHits }: { nHits: number }) => {
   const ref = useRef(null);
   const currentPage = useAppSelector(selectPage);
 
@@ -40,4 +40,4 @@ const PageLoader = ({ nHits }: { nHits: number }) => {
     </div>
   );
 };
-export default PageLoader;
+export default InfinityLoader;

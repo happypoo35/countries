@@ -9,7 +9,7 @@ import {
 } from "rtk/query.slice";
 import { CountryObj } from "./countries";
 import Country from "./country";
-import PageLoader from "./pageLoader";
+import InfinityLoader from "./infinityLoader";
 
 import s from "./countriesList.module.scss";
 
@@ -51,7 +51,7 @@ const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
           <Country key={id} data={el} />
         ))}
       </section>
-      <PageLoader nHits={filteredCountries.length} />
+      <InfinityLoader nHits={filteredCountries.length} />
     </>
   );
 };
