@@ -27,7 +27,7 @@
     box-shadow: 0 0.125rem 0.5rem rgba(black, 0.06);
     border-radius: 0.25rem;
     width: 100%;
-    padding: 1.125rem 1rem 1rem 3.5rem;
+    padding: 1.125rem 2.5rem 1rem 3.5rem;
 
     &:focus-visible {
       outline: none;
@@ -38,11 +38,26 @@
     }
   }
 
-  svg {
+  .iconSearch {
     position: absolute;
     left: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
     color: color(gray, 300);
+  }
+
+  .btnClear {
+    position: absolute;
+    right: 0.75rem;
+    font-size: 1.25rem;
+    background: none;
+    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+    color: color(gray, 300);
+
+    @include hover {
+      color: color(gray, 200);
+    }
   }
 }

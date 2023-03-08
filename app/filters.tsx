@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { FiX } from "react-icons/fi";
 import Select from "./select";
 
 import { useAppDispatch, useAppSelector, useDebounce } from "@hooks";
@@ -37,7 +38,12 @@ const Filters = () => {
   return (
     <section className={s.section} aria-label="search section">
       <div className={s.input}>
-        <FaSearch />
+        <FaSearch className={s.iconSearch} />
+        {search && (
+          <button className={s.btnClear} onClick={() => setSearch("")}>
+            <FiX />
+          </button>
+        )}
         <input
           type="text"
           autoComplete="off"

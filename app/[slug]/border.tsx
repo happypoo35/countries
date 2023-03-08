@@ -1,9 +1,16 @@
 import Link from "next/link";
-import { getCountry } from "./page";
+// import { getCountry } from "./page";
+import { FullCountryObj } from "./page";
 
 import s from "./border.module.scss";
 
-const Border = async ({ border }: { border: string }) => {
+const Border = async ({
+  border,
+  getCountry,
+}: {
+  border: string;
+  getCountry: (code: string) => Promise<FullCountryObj>;
+}) => {
   const country = await getCountry(border);
 
   return (

@@ -9,7 +9,7 @@ const CountriesSkeleton = () => {
         <article className={sCard.country} key={id}>
           <div className={sCard.img} data-skeleton />
           <div className={sCard.body}>
-            <h4 data-skeleton>Loading...</h4>
+            <h2 data-skeleton>Loading...</h2>
             <ul>
               <li>
                 <p data-skeleton>Loading...</p>
