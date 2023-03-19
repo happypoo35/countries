@@ -1,10 +1,11 @@
 import CountriesList from "./countriesList";
 import fsPromises from "fs/promises";
 import path from "path";
+import countriesData from "@public/data.json";
 
 export interface CountryObj {
   name: string;
-  capital: string;
+  capital?: string;
   region: string;
   population: number | string;
   flag: string;
@@ -12,9 +13,10 @@ export interface CountryObj {
 }
 
 export const getCountries = async () => {
-  const filePath = path.join(process.cwd(), "public/data.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const data: CountryObj[] = JSON.parse(jsonData.toString());
+  // const filePath = path.join(process.cwd(), "public/data.json");
+  // const jsonData = await fsPromises.readFile(filePath);
+  // const data: CountryObj[] = JSON.parse(jsonData.toString());
+  const data = countriesData;
 
   const countries = data.map((el, id) => {
     const { name, capital, region, population, flag, alpha3Code, ...rest } = el;

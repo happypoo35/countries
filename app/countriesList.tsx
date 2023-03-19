@@ -6,7 +6,7 @@ import {
   selectQueryLoading,
   selectQuerySearch,
   selectRegion,
-} from "rtk/query.slice";
+} from "store/query.slice";
 import { CountryObj } from "./countries";
 import Country from "./country";
 import InfinityLoader from "./infinityLoader";
@@ -25,11 +25,13 @@ const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
       : countries;
 
   const regex = new RegExp(`${search}`, "gi");
-  const filteredCountries = regionFiltered.filter((country) =>
-    country.name
-      .normalize("NFD")
-      .replace(/\p{Diacritic}/gu, "")
-      .match(regex)
+  const filteredCountries = regionFiltered.filter(
+    (country) =>
+      country.name
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .match(regex) ||
+      country.alpha3Code.toLowerCase().includes(search.toLowerCase())
   );
 
   if (filteredCountries.length < 1) {
