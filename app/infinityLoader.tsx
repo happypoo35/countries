@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "@hooks";
-import { selectPage, setQueryPage } from "rtk/query.slice";
+import { selectPage, setQueryPage } from "store/query.slice";
 
 import s from "./infinityLoader.module.scss";
 

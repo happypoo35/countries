@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import { BsArrowLeft } from "react-icons/bs";
 import { CountryObj, getCountries } from "app/countries";
 import Border from "./border";
-import fsPromises from "fs/promises";
-import path from "path";
+import countriesData from "@public/data.json";
 
 import s from "./page.module.scss";
 
@@ -22,18 +21,16 @@ export interface FullCountryObj extends CountryObj {
   topLevelDomain: string[];
   currencies?: { code: string; name: string; symbol: string }[];
   languages: {
-    iso639_1: string;
-    iso639_2: string;
+    iso639_1?: string;
+    iso639_2?: string;
     name: string;
-    nativeName: string;
+    nativeName?: string;
   }[];
   borders?: string[];
 }
 
 const getCountry = async (code: string) => {
-  const filePath = path.join(process.cwd(), "public/data.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const data: FullCountryObj[] = JSON.parse(jsonData.toString());
+  const data = countriesData;
 
   const country = data.find((el) => el.alpha3Code === code.toUpperCase());
   if (!country) return;
