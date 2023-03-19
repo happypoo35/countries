@@ -1,6 +1,4 @@
 import CountriesList from "./countriesList";
-import fsPromises from "fs/promises";
-import path from "path";
 import countriesData from "@public/data.json";
 
 export interface CountryObj {
@@ -13,9 +11,6 @@ export interface CountryObj {
 }
 
 export const getCountries = async () => {
-  // const filePath = path.join(process.cwd(), "public/data.json");
-  // const jsonData = await fsPromises.readFile(filePath);
-  // const data: CountryObj[] = JSON.parse(jsonData.toString());
   const data = countriesData;
 
   const countries = data.map((el, id) => {

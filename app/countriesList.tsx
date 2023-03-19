@@ -1,6 +1,5 @@
 "use client";
 
-import { useSelector } from "react-redux";
 import {
   selectPage,
   selectQueryLoading,
@@ -10,14 +9,15 @@ import {
 import { CountryObj } from "./countries";
 import Country from "./country";
 import InfinityLoader from "./infinityLoader";
+import { useAppSelector } from "@hooks";
 
 import s from "./countriesList.module.scss";
 
 const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
-  const page = useSelector(selectPage);
-  const isLoading = useSelector(selectQueryLoading);
-  const region = useSelector(selectRegion);
-  const search = useSelector(selectQuerySearch);
+  const page = useAppSelector(selectPage);
+  const isLoading = useAppSelector(selectQueryLoading);
+  const region = useAppSelector(selectRegion);
+  const search = useAppSelector(selectQuerySearch);
 
   const regionFiltered =
     region !== "All"
