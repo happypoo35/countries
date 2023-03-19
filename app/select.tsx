@@ -1,7 +1,7 @@
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "@hooks";
-import { selectRegion, setQueryRegion } from "rtk/query.slice";
+import { selectRegion, setQueryRegion } from "store/query.slice";
 
 import s from "./select.module.scss";
 

@@ -11,7 +11,7 @@ import {
   setQueryLoading,
   setQueryPage,
   setQuerySearch,
-} from "rtk/query.slice";
+} from "store/query.slice";
 
 import s from "./filters.module.scss";
 
