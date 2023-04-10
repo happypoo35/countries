@@ -41,13 +41,13 @@ export const generateStaticParams = async () => {
   const countries = await getCountries();
 
   return countries.map((country) => ({
-    slug: country.alpha3Code,
+    slug: country.alpha3Code.toLowerCase(),
   }));
 };
 
-const getCountry = async (code: string) => {
+const getCountry = async (slug: string) => {
   const country = countriesData.find(
-    (el) => el.alpha3Code.toLocaleLowerCase() === code
+    (el) => el.alpha3Code.toLowerCase() === slug
   );
 
   if (!country) return;
