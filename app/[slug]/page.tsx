@@ -21,10 +21,15 @@ export const generateMetadata = async ({
       : "Page not found",
     openGraph: {
       title: "Next.js",
-      description: "The React Framework for the Web",
+      description: "OG. The React Framework for the Web",
       url: "https://nextjs.org",
       siteName: "Next.js",
       images: [
+        {
+          url: country?.flag,
+          width: 800,
+          height: 600,
+        },
         {
           url: "https://nextjs.org/og.png",
           width: 800,
@@ -43,11 +48,28 @@ export const generateMetadata = async ({
     twitter: {
       card: "summary_large_image",
       title: "Next.js",
-      description: "The React Framework for the Web",
+      description: "Twitter. The React Framework for the Web",
       siteId: "1467726470533754880",
       creator: "@nextjs",
       creatorId: "1467726470533754880",
-      // images: [country?.flag],
+      images: [
+        {
+          url: country?.flag,
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "https://nextjs.org/og.png",
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "https://nextjs.org/og-alt.png",
+          width: 1800,
+          height: 1600,
+          alt: "My custom alt",
+        },
+      ],
     },
   };
 };
