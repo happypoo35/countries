@@ -17,12 +17,12 @@ export const generateMetadata = async ({
   if (!country) return;
 
   return {
-    title: `Countries: ${country}`,
-    description: `Country details: ${country.name}`,
+    title: `Countries: ${country.name}`,
+    description: `${country.name} details`,
     openGraph: {
       type: "article",
-      title: `Countries: ${country}`,
-      description: `Country details: ${country.name}`,
+      title: `Countries: ${country.name}`,
+      description: `${country.name} details`,
       siteName: "Countries",
       images: [
         {
@@ -36,7 +36,7 @@ export const generateMetadata = async ({
     twitter: {
       card: "summary_large_image",
       title: `Countries: ${country}`,
-      description: `Country details: ${country.name}`,
+      description: `${country.name} details`,
       images: [
         {
           url: country.flags.png,
