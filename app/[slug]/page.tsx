@@ -26,7 +26,7 @@ export const generateMetadata = async ({
       siteName: "Next.js",
       images: [
         {
-          url: country?.flag,
+          url: country?.flags.png,
           width: 800,
           height: 600,
         },
@@ -43,7 +43,7 @@ export const generateMetadata = async ({
       creatorId: "1467726470533754880",
       images: [
         {
-          url: country?.flag,
+          url: country?.flags.png,
           width: 800,
           height: 600,
         },
@@ -70,6 +70,7 @@ const getCountry = async (code: string) => {
   return {
     name: country.name,
     flag: country.flag,
+    flags: country.flags,
     borders: country.borders,
     alpha3Code: country.alpha3Code,
     detailsData: [
