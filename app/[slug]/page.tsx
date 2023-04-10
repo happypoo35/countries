@@ -26,11 +26,6 @@ export const generateMetadata = async ({
       siteName: "Next.js",
       images: [
         {
-          url: country?.flag,
-          width: 800,
-          height: 600,
-        },
-        {
           url: "https://nextjs.org/og.png",
           width: 800,
           height: 600,
@@ -53,11 +48,6 @@ export const generateMetadata = async ({
       creator: "@nextjs",
       creatorId: "1467726470533754880",
       images: [
-        {
-          url: country?.flag,
-          width: 800,
-          height: 600,
-        },
         {
           url: "https://nextjs.org/og.png",
           width: 800,
