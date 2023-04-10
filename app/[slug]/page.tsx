@@ -24,15 +24,14 @@ export const generateMetadata = async ({
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
       siteName: "Countries",
-      images: country.flags.png,
+      images: { url: country.flags.png, width: 1200, height: 630 },
       locale: "en-US",
     },
     twitter: {
-      type: "product",
       card: "summary_large_image",
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
-      images: country.flags.png,
+      images: { url: country.flags.png, width: 1200, height: 630 },
     },
   };
 };
