@@ -1,32 +1,29 @@
+"use client";
+
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { useAppDispatch, useAppSelector } from "@hooks";
-import { selectRegion, setQueryRegion } from "store/query.slice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { selectRegion, setQueryRegion } from "@/store/query.slice";
+import regions from "@/public/regions.json";
 
 import s from "./select.module.scss";
 
-const optionsList = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
-
 const Select = () => {
-  const selected = useAppSelector(selectRegion);
+  const selectedId = useAppSelector(selectRegion);
+  const selectedOption = regions[selectedId];
 
   const [showList, setShowList] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(
-    optionsList.indexOf(selected)
-  );
   const selectRef = useRef<null | HTMLDivElement>(null);
   const namespace = "region";
 
   const dispatch = useAppDispatch();
 
-  const handleSelect = (id: number) => {
-    setSelectedOption(id);
-    setShowList(false);
+  const handleSelect = (id: number, hideList?: boolean) => {
+    dispatch(setQueryRegion(id));
+    if (hideList) {
+      setShowList(false);
+    }
   };
-
-  useEffect(() => {
-    dispatch(setQueryRegion(optionsList[selectedOption]));
-  }, [dispatch, selectedOption]);
 
   const handleKeyDown = (id: number) => (e: KeyboardEvent<HTMLLIElement>) => {
     switch (e.key) {
@@ -34,7 +31,7 @@ const Select = () => {
       case "SpaceBar":
       case "Enter":
         e.preventDefault();
-        handleSelect(id);
+        handleSelect(id, true);
         break;
       case "Esc":
       case "Escape":
@@ -56,16 +53,12 @@ const Select = () => {
       case "Up":
       case "ArrowUp":
         e.preventDefault();
-        setSelectedOption(
-          selectedOption - 1 >= 0 ? selectedOption - 1 : optionsList.length - 1
-        );
+        handleSelect(selectedId - 1 >= 0 ? selectedId - 1 : regions.length - 1);
         break;
       case "Down":
       case "ArrowDown":
         e.preventDefault();
-        setSelectedOption(
-          selectedOption == optionsList.length - 1 ? 0 : selectedOption + 1
-        );
+        handleSelect(selectedId == regions.length - 1 ? 0 : selectedId + 1);
         break;
       default:
         break;
@@ -95,13 +88,13 @@ const Select = () => {
         aria-controls={`${namespace}_dropdown`}
         aria-labelledby={`${namespace}_label`}
         aria-expanded={showList}
-        aria-activedescendant={`${namespace}_element_${optionsList[selectedOption]}`}
+        aria-activedescendant={`${namespace}_element_${selectedOption}`}
         className={s.select}
-        data-active={selectedOption || undefined}
+        data-active={selectedId || undefined}
         onClick={() => setShowList(!showList)}
         onKeyDown={handleListKeyDown}
       >
-        {selectedOption ? optionsList[selectedOption] : "Filter by Region"}
+        {selectedId !== 0 ? selectedOption : "Filter by Region"}
         <FaChevronDown data-show={showList || undefined} />
       </button>
       <ul
@@ -113,17 +106,17 @@ const Select = () => {
         aria-multiselectable={false}
         aria-label="List of regions"
       >
-        {optionsList.map((option, id) => {
+        {regions.map((option, id) => {
           return (
             <li
               key={id}
               role="option"
               tabIndex={0}
               id={`${namespace}_element_${option}`}
-              aria-selected={selectedOption === id}
+              aria-selected={selectedId === id}
               className={s.option}
-              data-active={selectedOption === id || undefined}
-              onClick={() => handleSelect(id)}
+              data-active={selectedId === id || undefined}
+              onClick={() => handleSelect(id, true)}
               onKeyDown={handleKeyDown(id)}
             >
               {option}
