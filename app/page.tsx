@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-import Countries from "./countries";
-import CountriesSkeleton from "./countriesSkeleton";
-import Filters from "./filters";
+import { Countries, CountriesSkeleton, Filters } from "@/components";
 
 const Home = ({ searchParams }: { searchParams: { s?: string } }) => (
   <>

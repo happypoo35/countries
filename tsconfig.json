@@ -19,11 +19,8 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./",
     "paths": {
-      "@styles/*": ["./styles/*"],
-      "@hooks": ["./hooks"],
-      "@public/*": ["./public/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

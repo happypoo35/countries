@@ -5,28 +5,29 @@ import {
   selectQueryLoading,
   selectQuerySearch,
   selectRegion,
-} from "store/query.slice";
-import { CountryObj } from "./countries";
-import Country from "./country";
-import InfinityLoader from "./infinityLoader";
-import { useAppSelector } from "@hooks";
+} from "@/store/query.slice";
+import { CountryObj } from "./Countries";
+import Country from "./Country";
+import InfinityLoader from "./InfinityLoader";
+import { useAppSelector } from "@/hooks";
+import regions from "@/public/regions.json";
 
 import s from "./countriesList.module.scss";
 
 const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
   const page = useAppSelector(selectPage);
   const isLoading = useAppSelector(selectQueryLoading);
-  const region = useAppSelector(selectRegion);
+  const regionId = useAppSelector(selectRegion);
   const search = useAppSelector(selectQuerySearch);
 
   const regionFiltered =
-    region !== "All"
-      ? countries.filter((country) => country.region === region)
+    regionId !== 0
+      ? countries.filter((country) => country.region === regions[regionId])
       : countries;
 
   const keywords = search
     .toLowerCase()
-    .replace(/^a-zA-Z0-9 ]/g, "")
+    .replace(/^a-zA-Z0-9 ]|[()]/g, "")
     .split(" ")
     .filter((s) => s !== "");
 
@@ -43,7 +44,7 @@ const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
           return keywords.every((kw) => words.some((w) => w.startsWith(kw)));
         });
 
-  if (filteredCountries.length < 1) {
+  if (filteredCountries.length === 0) {
     return (
       <div className={s.empty}>
         <h2>No countries matched your search criteria</h2>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CountryObj } from "./countries";
+import { CountryObj } from "./Countries";
 
 import s from "./country.module.scss";
 

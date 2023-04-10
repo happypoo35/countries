@@ -1,8 +1,5 @@
 import { Nunito_Sans } from "next/font/google";
-// import { ServerThemeProvider } from "next-themes";
-
-import Header from "./header";
-import { Providers } from "./providers";
+import { Header, Providers } from "@/components";
 
 import "../styles/globals.scss";
 import s from "./layout.module.scss";

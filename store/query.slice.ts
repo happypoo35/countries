@@ -4,13 +4,13 @@ import { RootState } from ".";
 type QueryState = {
   loading: boolean;
   page: number;
-  region: string;
+  region: number;
   search: string;
 };
 
 const initialState: QueryState = {
   loading: false,
-  region: "All",
+  region: 0,
   search: "",
   page: 1,
 };
@@ -28,7 +28,7 @@ export const querySlice = createSlice({
     setQueryPage: (state, { payload }: PayloadAction<number>) => {
       state.page = payload;
     },
-    setQueryRegion: (state, { payload }: PayloadAction<string>) => {
+    setQueryRegion: (state, { payload }: PayloadAction<number>) => {
       state.region = payload;
     },
   },

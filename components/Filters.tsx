@@ -3,15 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
-import Select from "./select";
+import Select from "./Select";
 
-import { useAppDispatch, useAppSelector, useDebounce } from "@hooks";
+import { useAppDispatch, useAppSelector, useDebounce } from "@/hooks";
 import {
   selectQuerySearch,
   setQueryLoading,
   setQueryPage,
   setQuerySearch,
-} from "store/query.slice";
+} from "@/store/query.slice";
 
 import s from "./filters.module.scss";
 

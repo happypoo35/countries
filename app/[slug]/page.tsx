@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BsArrowLeft } from "react-icons/bs";
-import { type CountryObj, getCountries } from "app/countries";
-import Border from "./border";
-import countriesData from "@public/data.json";
+import countriesData from "@/public/data.json";
+import { getCountries } from "@/components/Countries";
+import { Border } from "@/components";
 
 import s from "./page.module.scss";
 
@@ -30,104 +30,68 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export interface FullCountryObj extends CountryObj {
-  nativeName: string;
-  subregion: string;
-  topLevelDomain: string[];
-  currencies?: { code: string; name: string; symbol: string }[];
-  languages: {
-    iso639_1?: string;
-    iso639_2?: string;
-    name: string;
-    nativeName?: string;
-  }[];
-  borders?: string[];
-}
-
 const getCountry = async (code: string) => {
-  const data = countriesData;
+  const country = countriesData.find(
+    (el) => el.alpha3Code.toLocaleLowerCase() === code
+  );
 
-  const country = data.find((el) => el.alpha3Code === code.toUpperCase());
   if (!country) return;
 
-  const {
-    name,
-    capital,
-    region,
-    population,
-    flag,
-    nativeName,
-    subregion,
-    topLevelDomain,
-    currencies,
-    languages,
-    borders,
-    alpha3Code,
-    ...rest
-  } = country;
-
   return {
-    name,
-    capital,
-    region,
-    population: population.toLocaleString(),
-    flag,
-    nativeName,
-    subregion,
-    topLevelDomain,
-    currencies,
-    languages,
-    borders,
-    alpha3Code,
+    name: country.name,
+    flag: country.flag,
+    borders: country.borders,
+    alpha3Code: country.alpha3Code,
+    detailsData: [
+      [
+        {
+          key: "Native Name",
+          value: country.nativeName,
+        },
+        {
+          key: "Population",
+          value: country.population.toLocaleString(),
+        },
+        {
+          key: "Region",
+          value: country.region,
+        },
+        {
+          key: "Sub Region",
+          value: country.subregion,
+        },
+        {
+          key: "Capital",
+          value: country.capital,
+        },
+      ],
+      [
+        {
+          key: "Top Level Domain",
+          value: country.topLevelDomain.join(", "),
+        },
+        {
+          key: "Currencies",
+          value: country.currencies
+            ?.map(({ name, symbol }) => `${name} (${symbol})`)
+            .join(", "),
+        },
+        {
+          key: "Languages",
+          value: country.languages.map(({ name }) => name).join(", "),
+        },
+      ],
+    ],
   };
 };
-
-const detailsData = (country: FullCountryObj) => [
-  [
-    {
-      key: "Native Name",
-      value: country.nativeName,
-    },
-    {
-      key: "Population",
-      value: country.population,
-    },
-    {
-      key: "Region",
-      value: country.region,
-    },
-    {
-      key: "Sub Region",
-      value: country.subregion,
-    },
-    {
-      key: "Capital",
-      value: country.capital,
-    },
-  ],
-  [
-    {
-      key: "Top Level Domain",
-      value: country.topLevelDomain.join(", "),
-    },
-    {
-      key: "Currencies",
-      value: country.currencies
-        ?.map(({ name, symbol }) => `${name} (${symbol})`)
-        .join(", "),
-    },
-    {
-      key: "Languages",
-      value: country.languages.map(({ name }) => name).join(", "),
-    },
-  ],
-];
 
 const Country = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const country = await getCountry(slug);
 
-  if (!country) return notFound();
+  if (!country) {
+    notFound();
+  }
 
   return (
     <section className={s.section} aria-label={`${country.name} details`}>
@@ -142,7 +106,7 @@ const Country = async ({ params }: { params: { slug: string } }) => {
         <div className={s.info}>
           <h2>{country.name}</h2>
           <div className={s.details}>
-            {detailsData(country).map((group, id) => (
+            {country.detailsData.map((group, id) => (
               <ul key={id}>
                 {group.map(
                   (item, i) =>
@@ -162,7 +126,7 @@ const Country = async ({ params }: { params: { slug: string } }) => {
                 {country.borders?.map((border, id) => (
                   <div key={id}>
                     {/* @ts-expect-error Server Component */}
-                    <Border border={border} getCountry={getCountry} />
+                    <Border border={border} />
                   </div>
                 ))}
               </div>

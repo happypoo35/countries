@@ -9,7 +9,7 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: ["./app"],
-    prependData: '@import "@styles/config";',
+    prependData: '@import "@/styles/config";',
   },
 };
 

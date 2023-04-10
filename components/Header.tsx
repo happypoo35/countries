@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ToggleTheme from "./toggleTheme";
+import ToggleTheme from "./ToggleTheme";
 
 import s from "./header.module.scss";
 
