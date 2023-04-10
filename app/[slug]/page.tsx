@@ -20,17 +20,11 @@ export const generateMetadata = async ({
     title: `Countries: ${country.name}`,
     description: `${country.name} details`,
     openGraph: {
-      type: "video.movie",
+      type: "website",
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
       siteName: "Countries",
-      images: [
-        {
-          url: country.flags.png,
-          width: 1200,
-          height: 630,
-        },
-      ],
+      images: country.flags.png,
       locale: "en-US",
     },
     twitter: {
@@ -38,13 +32,7 @@ export const generateMetadata = async ({
       card: "summary_large_image",
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
-      images: [
-        {
-          url: country.flags.png,
-          width: 1200,
-          height: 630,
-        },
-      ],
+      images: country.flags.png,
     },
   };
 };
