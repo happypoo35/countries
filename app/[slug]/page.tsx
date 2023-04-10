@@ -14,38 +14,34 @@ export const generateMetadata = async ({
 }) => {
   const country = await getCountry(params.slug);
 
+  if (!country) return;
+
   return {
-    title: `Countries: ${country ? `${country.name}` : "Page not found"}`,
-    description: country
-      ? `Country details: ${country.name}`
-      : "Page not found",
+    title: `Countries: ${country}`,
+    description: `Country details: ${country.name}`,
     openGraph: {
-      title: "Next.js",
-      description: "OG. The React Framework for the Web",
-      url: "https://nextjs.org",
-      siteName: "Next.js",
+      type: "article",
+      title: `Countries: ${country}`,
+      description: `Country details: ${country.name}`,
+      siteName: "Countries",
       images: [
         {
-          url: country?.flags.png,
-          width: 800,
-          height: 600,
+          url: country.flags.png,
+          width: 1200,
+          height: 630,
         },
       ],
       locale: "en-US",
-      type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Next.js",
-      description: "Twitter. The React Framework for the Web",
-      siteId: "1467726470533754880",
-      creator: "@nextjs",
-      creatorId: "1467726470533754880",
+      title: `Countries: ${country}`,
+      description: `Country details: ${country.name}`,
       images: [
         {
-          url: country?.flags.png,
-          width: 800,
-          height: 600,
+          url: country.flags.png,
+          width: 1200,
+          height: 630,
         },
       ],
     },
