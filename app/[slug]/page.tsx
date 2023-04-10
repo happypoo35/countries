@@ -47,7 +47,7 @@ export const generateMetadata = async ({
       siteId: "1467726470533754880",
       creator: "@nextjs",
       creatorId: "1467726470533754880",
-      images: [country?.flag],
+      // images: [country?.flag],
     },
   };
 };
