@@ -1,11 +1,26 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BsArrowLeft } from "react-icons/bs";
-import { CountryObj, getCountries } from "app/countries";
+import { type CountryObj, getCountries } from "app/countries";
 import Border from "./border";
 import countriesData from "@public/data.json";
 
 import s from "./page.module.scss";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  const country = await getCountry(params.slug);
+
+  return {
+    title: `Countries: ${country ? `${country.name}` : "Page not found"}`,
+    description: country
+      ? `Country details: ${country.name}`
+      : "Page not found",
+  };
+};
 
 export const generateStaticParams = async () => {
   const countries = await getCountries();
@@ -66,21 +81,6 @@ const getCountry = async (code: string) => {
     alpha3Code,
   };
 };
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const country = await getCountry(params.slug);
-
-  return {
-    title: `Countries: ${country ? `${country.name}` : "Page not found"}`,
-    description: country
-      ? `Country details: ${country.name}`
-      : "Page not found",
-  };
-}
 
 const detailsData = (country: FullCountryObj) => [
   [

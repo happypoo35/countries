@@ -20,24 +20,20 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" className={nunito.className} suppressHydrationWarning>
-      <head />
-      <body>
-        <Providers>
-          <div className={s.wrapper}>
-            <Header />
-            <main className={s.main} data-container="fixed">
-              {children}
-            </main>
-          </div>
-        </Providers>
-      </body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
+  <html lang="en" className={nunito.className} suppressHydrationWarning>
+    <head />
+    <body>
+      <Providers>
+        <div className={s.wrapper}>
+          <Header />
+          <main className={s.main} data-container="fixed">
+            {children}
+          </main>
+        </div>
+      </Providers>
+    </body>
+  </html>
+);
+
+export default RootLayout;

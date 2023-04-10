@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
 import { useAppDispatch, useAppSelector } from "@hooks";
 import { selectPage, setQueryPage } from "store/query.slice";
 
@@ -40,4 +39,5 @@ const InfinityLoader = ({ nHits }: { nHits: number }) => {
     </div>
   );
 };
+
 export default InfinityLoader;

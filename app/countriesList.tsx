@@ -24,15 +24,24 @@ const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
       ? countries.filter((country) => country.region === region)
       : countries;
 
-  const regex = new RegExp(`${search}`, "gi");
-  const filteredCountries = regionFiltered.filter(
-    (country) =>
-      country.name
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "")
-        .match(regex) ||
-      country.alpha3Code.toLowerCase().includes(search.toLowerCase())
-  );
+  const keywords = search
+    .toLowerCase()
+    .replace(/^a-zA-Z0-9 ]/g, "")
+    .split(" ")
+    .filter((s) => s !== "");
+
+  const filteredCountries =
+    keywords.length === 0
+      ? regionFiltered
+      : regionFiltered.filter((country) => {
+          const words = `${country.name
+            .normalize("NFD")
+            .replace(/\p{Diacritic}|[()]/gu, "")} ${country.alpha3Code}`
+            .toLowerCase()
+            .split(" ");
+
+          return keywords.every((kw) => words.some((w) => w.startsWith(kw)));
+        });
 
   if (filteredCountries.length < 1) {
     return (
