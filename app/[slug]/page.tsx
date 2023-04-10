@@ -19,6 +19,9 @@ export const generateMetadata = async ({
     description: country
       ? `Country details: ${country.name}`
       : "Page not found",
+    openGraph: {
+      images: country?.flag,
+    },
   };
 };
 
