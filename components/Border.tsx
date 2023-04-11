@@ -23,11 +23,7 @@ const Border = async ({ border }: { border: string }) => {
   return (
     <Link href={`/${border.toLowerCase()}`} className={s.btn}>
       <picture>
-        <img
-          src={country.flag}
-          alt={`flag of ${country.name}`}
-          style={{ height: "0.875rem" }}
-        />
+        <img src={country.flag} alt={`flag of ${country.name}`} />
       </picture>
       {country.name}
     </Link>
