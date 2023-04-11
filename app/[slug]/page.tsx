@@ -2,17 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BsArrowLeft } from "react-icons/bs";
 import countriesData from "@/public/data.json";
-import { getCountries } from "@/components/Countries";
 import { Border } from "@/components";
 
 import s from "./page.module.scss";
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
-  const country = await getCountry(params.slug);
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+  const country = getCountry(params.slug);
 
   if (!country) return;
 
@@ -36,15 +31,13 @@ export const generateMetadata = async ({
   };
 };
 
-export const generateStaticParams = async () => {
-  const countries = await getCountries();
-
-  return countries.map((country) => ({
+export const generateStaticParams = () => {
+  return countriesData.map((country) => ({
     slug: country.alpha3Code.toLowerCase(),
   }));
 };
 
-const getCountry = async (slug: string) => {
+const getCountry = (slug: string) => {
   const country = countriesData.find(
     (el) => el.alpha3Code.toLowerCase() === slug
   );
@@ -100,9 +93,9 @@ const getCountry = async (slug: string) => {
   };
 };
 
-const Country = async ({ params }: { params: { slug: string } }) => {
+const Country = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
-  const country = await getCountry(slug);
+  const country = getCountry(slug);
 
   if (!country) {
     notFound();
@@ -140,7 +133,6 @@ const Country = async ({ params }: { params: { slug: string } }) => {
               <div className={s.buttons}>
                 {country.borders?.map((border, id) => (
                   <div key={id}>
-                    {/* @ts-expect-error Server Component */}
                     <Border border={border} />
                   </div>
                 ))}

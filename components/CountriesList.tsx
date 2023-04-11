@@ -6,15 +6,15 @@ import {
   selectQuerySearch,
   selectRegion,
 } from "@/store/query.slice";
-import { CountryObj } from "./Countries";
 import Country from "./Country";
 import InfinityLoader from "./InfinityLoader";
 import { useAppSelector } from "@/hooks";
 import regions from "@/public/regions.json";
+import { CountryObj } from "@/app/page";
 
 import s from "./countriesList.module.scss";
 
-const CountriesList = ({ countries }: { countries: CountryObj[] }) => {
+const CountriesList = ({ countries }: { countries: CountryObj }) => {
   const page = useAppSelector(selectPage);
   const isLoading = useAppSelector(selectQueryLoading);
   const regionId = useAppSelector(selectRegion);

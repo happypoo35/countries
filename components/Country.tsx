@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { CountryObj } from "./Countries";
+import { CountryObj } from "@/app/page";
 
 import s from "./country.module.scss";
 
-const Country = ({ data }: { data: CountryObj }) => (
+const Country = ({ data }: { data: CountryObj[number] }) => (
   <Link
     className={s.country}
     href={`/${data.alpha3Code.toLowerCase()}`}

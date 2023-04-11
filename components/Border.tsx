@@ -3,7 +3,7 @@ import countriesData from "@/public/data.json";
 
 import s from "./border.module.scss";
 
-const getBorder = async (code: string) => {
+const getBorder = (code: string) => {
   const country = countriesData.find(
     (el) => el.alpha3Code.toLowerCase() === code.toLowerCase()
   );
@@ -15,10 +15,10 @@ const getBorder = async (code: string) => {
   };
 };
 
-const Border = async ({ border }: { border: string }) => {
-  const country = await getBorder(border);
+const Border = ({ border }: { border: string }) => {
+  const country = getBorder(border);
 
-  if (!country) return;
+  if (!country) return null;
 
   return (
     <Link href={`/${border.toLowerCase()}`} className={s.btn}>

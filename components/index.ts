@@ -1,4 +1,3 @@
-export { default as Countries } from "./Countries";
 export { default as CountriesList } from "./CountriesList";
 export { default as CountriesSkeleton } from "./CountriesSkeleton";
 export { default as Country } from "./Country";
