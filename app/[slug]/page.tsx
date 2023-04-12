@@ -15,18 +15,26 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
     title: `Countries: ${country.name}`,
     description: `${country.name} details`,
     openGraph: {
-      type: "website",
+      type: "article",
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
       siteName: "Countries",
-      images: { url: country.flags.png, width: 1200, height: 630 },
+      images: {
+        url: country.flags.png,
+        width: 1200,
+        height: 630,
+      },
       locale: "en-US",
     },
     twitter: {
       card: "summary_large_image",
       title: `Countries: ${country.name}`,
       description: `${country.name} details`,
-      images: { url: country.flags.png, width: 1200, height: 630 },
+      images: {
+        url: country.flags.png,
+        width: 1200,
+        height: 630,
+      },
     },
   };
 };
