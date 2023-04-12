@@ -9,7 +9,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.34",
+    "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "critters": "^0.0.16",
     "eslint": "^8.38.0",
@@ -23,6 +23,6 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "sass": "^1.61.0"
+    "sass": "^1.62.0"
   }
 }
